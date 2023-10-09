@@ -1,10 +1,31 @@
-Console.WriteLine("Enter a four-digit number:");
+using System;
 
-int num = int.Parse(Console.ReadLine());
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter a sentence: ");
+        string input = Console.ReadLine();
 
-int minlik = num / 1000;
-int yuzluk = (num % 1000) / 100;
-int onluq = (num % 100) / 10;
-int teklik = (num % 10);
+        string[] words = input.Split(' ');
 
-Console.WriteLine(minlik+yuzluk+onluq+teklik);
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i].Length > 0)
+            {
+                char[] letters = words[i].ToCharArray();
+                letters[0] = char.ToUpper(letters[0]);
+                for (int j = 1; j < letters.Length; j++)
+                {
+                    letters[j] = char.ToLower(letters[j]);
+                }
+                words[i] = new string(letters);
+            }
+        }
+
+        string capitalizedSentence = string.Join(" ", words);
+        Console.WriteLine("Capitalized Sentence: " + capitalizedSentence);
+
+        Console.ReadLine();
+    }
+}
